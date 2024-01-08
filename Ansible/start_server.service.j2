@@ -1,0 +1,10 @@
+[Unit]
+Description=Python Server Service
+After=network.target
+
+[Service]
+WorkingDirectory=/home/vs5938
+Environment="PATH=/home/vs5938/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+ExecStart=/usr/bin/python3 /home/vs5938/server.py "127.0.0.1" 8080 /home/vs5938/demo.crt /home/vs5938/demo.key
+Restart=always
+RestartSec=5

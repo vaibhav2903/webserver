@@ -1,0 +1,19 @@
+- name: Setup Python module and web server environment
+  hosts: all
+  become: yes
+  tasks:
+    - name: Copy Dockerfile script
+      ansible.builtin.copy:
+        src: ../Docker/Dockerfile
+        dest: /home/vs5938/Dockerfile
+        mode: '0755'
+    - name: Copy requirements.txt
+      ansible.builtin.copy:
+        src: ../Code/requirements.txt
+        dest: /home/vs5938/requirements.txt
+        mode: '0755'
+    - name: Copy Dockerfile script
+      ansible.builtin.copy:
+        src: ../Docker/docker-compose.yml
+        dest: /home/vs5938/docker-compose.yml
+        mode: '0755'
