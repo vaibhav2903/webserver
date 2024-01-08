@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test PUT Request</title>
+    <script>
+        function sendPutRequest(event) {
+            // Prevent the normal form submission
+            event.preventDefault();
+
+            // Get the data from the form
+            var data = document.getElementById("inputData").value;
+
+            // Create an AJAX request
+            var xhr = new XMLHttpRequest();
+            xhr.open("PUT", "http://127.0.0.1:3001", true); // Replace with your server's PUT endpoint
+            xhr.setRequestHeader("Content-Type", "text/plain");
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    var status = xhr.status;
+                    if (status === 0 || (status >= 200 && status < 400)) {
+                        // The request has been completed successfully
+                        alert("PUT request successful. Response: " + xhr.responseText);
+                    } else {
+                        // Handle errors
+                        alert("PUT request failed. Status: " + status);
+                    }
+                }
+            };
+
+            // Send the PUT request with data
+            xhr.send(data);
+        }
+    </script>
+</head>
+<body>
+    <h2>Test PUT Request</h2>
+    <form id="putForm" onsubmit="sendPutRequest(event)">
+        <label for="inputData">Data:</label>
+        <input type="text" id="inputData" name="data">
+        <button type="submit">Send PUT Request</button>
+    </form>
+</body>
+</html>
